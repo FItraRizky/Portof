@@ -30,7 +30,7 @@ export default function ProfileCard({
   avatarUrl,
   showUserInfo = true,
   enableTilt = true,
-  enableMobileTilt = false,
+  enableMobileTilt = true,
   onContactClick,
   contactHref = "#contact",
   className,
