@@ -59,8 +59,28 @@ export default function ProfileCard({
     y.set(mouseYFromCenter / height);
   };
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!ref.current || (!enableTilt && !enableMobileTilt)) return;
+
+    const touch = e.touches[0];
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const touchXFromCenter = touch.clientX - rect.left - width / 2;
+    const touchYFromCenter = touch.clientY - rect.top - height / 2;
+
+    x.set(touchXFromCenter / width);
+    y.set(touchYFromCenter / height);
+  };
+
   const handleMouseLeave = () => {
     if (!enableTilt) return;
+    x.set(0);
+    y.set(0);
+  };
+
+  const handleTouchEnd = () => {
+    if (!enableTilt && !enableMobileTilt) return;
     x.set(0);
     y.set(0);
   };
@@ -77,6 +97,8 @@ export default function ProfileCard({
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <motion.div
         className="relative w-full h-full rounded-[20px] overflow-hidden bg-[#0f172a] shadow-2xl border border-slate-800"
