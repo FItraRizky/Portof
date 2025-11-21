@@ -40,11 +40,11 @@ export default function ProfileCard({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseX = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseY = useSpring(y, { stiffness: 300, damping: 30 });
+  const mouseX = useSpring(x, { stiffness: 400, damping: 15 });
+  const mouseY = useSpring(y, { stiffness: 400, damping: 15 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-15deg", "15deg"]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["25deg", "-25deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-25deg", "25deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current || !enableTilt) return;
