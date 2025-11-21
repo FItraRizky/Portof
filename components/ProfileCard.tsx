@@ -104,13 +104,15 @@ export default function ProfileCard({
           className="absolute inset-0 pointer-events-none z-10 mix-blend-overlay"
           style={{
             background: useTransform(
-              [mouseX, mouseY],
-              ([x, y]) =>
-                `radial-gradient(circle at ${50 + x * 100}% ${
-                  50 + y * 100
-                }%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%)`
+              () => {
+                const xVal = mouseX.get();
+                const yVal = mouseY.get();
+                return `radial-gradient(circle at ${50 + xVal * 100}% ${
+                  50 + yVal * 100
+                }%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%)`;
+              }
             ),
-            opacity: useTransform(mouseX, [-0.5, 0.5], [0, 0.6]), // Optional: fade in/out based on tilt intensity
+            opacity: useTransform(mouseX, [-0.5, 0.5], [0, 0.6]),
           }}
         />
 

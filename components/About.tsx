@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Code2, Palette, Rocket, Users } from "lucide-react";
 import Image from "next/image";
 import LogoLoop from "./LogoLoop";
@@ -58,14 +58,14 @@ export default function About() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: [0.4, 0, 0.2, 1],
       },
     },
   };
