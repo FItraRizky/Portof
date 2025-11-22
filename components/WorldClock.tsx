@@ -17,21 +17,26 @@ const zones: Zone[] = [
 ];
 
 export default function WorldClock() {
-  const [now, setNow] = useState<Date>(new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
 
-  const format = (tz: string) =>
-    new Intl.DateTimeFormat("en-US", {
+  const format = (tz: string) => {
+    if (!now) return "00:00:00";
+    return new Intl.DateTimeFormat("en-US", {
       hour: "numeric",
       minute: "numeric",
       second: "numeric",
       hour12: false,
       timeZone: tz,
     }).format(now);
+  };
+
+  if (!now) return null;
 
   return (
     <div className="flex flex-wrap gap-4 text-sm text-muted">
