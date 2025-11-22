@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import ProfileCard from "./ProfileCard";
+import GradientText from "./GradientText";
 
 export default function Hero() {
   const containerVariants: Variants = {
@@ -43,13 +44,17 @@ export default function Hero() {
           className="order-2 md:order-1"
         >
           {/* Main Heading */}
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-serif"
-            variants={itemVariants}
-          >
-            I&apos;m Fitra Rizky, an independent software developer from
-            Indonesia.
-          </motion.h1>
+          <motion.div variants={itemVariants}>
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-serif mx-0 justify-start cursor-default"
+            >
+              I&apos;m Fitra Rizky, an independent software developer from
+              Indonesia.
+            </GradientText>
+          </motion.div>
 
           {/* Description */}
           <motion.div
