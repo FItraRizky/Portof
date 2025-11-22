@@ -4,7 +4,6 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 import SmoothScroll from "../components/SmoothScroll";
-import Crosshair from "../components/Crosshair";
 import StaggeredMenu from "../components/StaggeredMenu";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -115,7 +114,6 @@ export default function RootLayout({
           }}
         />
         <SmoothScroll />
-        <Crosshair />
         <StaggeredMenu />
         {children}
       </body>
