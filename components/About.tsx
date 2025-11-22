@@ -92,7 +92,7 @@ export default function About() {
           <div className="space-y-4 text-lg text-muted leading-relaxed">
             <ScrollFloatText 
               containerClassName="text-lg text-muted leading-relaxed"
-              stagger={0.01}
+              stagger={0.05}
             >
               I&apos;m a passionate fullstack developer with over 5 years of experience building web applications and digital products. I specialize in creating scalable, performant solutions that solve real-world problems.
             </ScrollFloatText>

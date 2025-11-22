@@ -107,7 +107,7 @@ export default function Projects() {
           </ScrollFloat>
           <ScrollFloatText 
             containerClassName="text-muted text-lg"
-            stagger={0.015}
+            stagger={0.05}
           >
             A selection of projects I&apos;ve worked on recently
           </ScrollFloatText>
@@ -143,7 +143,7 @@ export default function Projects() {
                 </div>
                 <ScrollFloatText 
                   containerClassName="text-muted mb-6 text-sm leading-relaxed"
-                  stagger={0.005}
+                  stagger={0.02}
                   scrollStart="top bottom-=50"
                 >
                   {project.description}

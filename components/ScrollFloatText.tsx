@@ -15,6 +15,7 @@ interface ScrollFloatTextProps {
   scrollEnd?: string;
   stagger?: number;
   as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  splitBy?: 'character' | 'word';
 }
 
 const ScrollFloatText: React.FC<ScrollFloatTextProps> = ({
@@ -26,19 +27,30 @@ const ScrollFloatText: React.FC<ScrollFloatTextProps> = ({
   ease = 'power2.out',
   scrollStart = 'top bottom-=100',
   scrollEnd = 'bottom bottom-=200',
-  stagger = 0.1,
-  as: Component = 'p'
+  stagger = 0.02,
+  as: Component = 'p',
+  splitBy = 'word'
 }) => {
   const containerRef = useRef<HTMLElement>(null);
 
   const splitText = useMemo(() => {
     const text = typeof children === 'string' ? children : '';
-    return text.split('').map((char, index) => (
-      <span className="inline-block word" key={index}>
-        {char === ' ' ? '\u00A0' : char}
+    
+    if (splitBy === 'character') {
+      return text.split('').map((char, index) => (
+        <span className="inline-block" key={index}>
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ));
+    }
+
+    // Split by word for better performance
+    return text.split(' ').map((word, index) => (
+      <span className="inline-block mr-[0.25em]" key={index}>
+        {word}
       </span>
     ));
-  }, [children]);
+  }, [children, splitBy]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -46,24 +58,21 @@ const ScrollFloatText: React.FC<ScrollFloatTextProps> = ({
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
-    const charElements = el.querySelectorAll('.inline-block');
+    const elements = el.querySelectorAll('.inline-block');
 
     const animation = gsap.fromTo(
-      charElements,
+      elements,
       {
         willChange: 'opacity, transform',
         opacity: 0,
         y: 20,
-        scaleY: 1.1,
-        scaleX: 0.95,
+        // Removed scale animations for better performance
       },
       {
         duration: animationDuration,
         ease: ease,
         opacity: 1,
         y: 0,
-        scaleY: 1,
-        scaleX: 1,
         stagger: stagger,
         scrollTrigger: {
           trigger: el,
@@ -84,9 +93,9 @@ const ScrollFloatText: React.FC<ScrollFloatTextProps> = ({
     Component,
     {
       ref: containerRef as any,
-      className: `overflow-hidden ${containerClassName}`
+      className: `${containerClassName}` // Removed overflow-hidden to prevent clipping of descenders
     },
-    React.createElement('span', { className: `inline-block ${textClassName}` }, splitText)
+    <span className={`${textClassName}`}>{splitText}</span>
   );
 };
 

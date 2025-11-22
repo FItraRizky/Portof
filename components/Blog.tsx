@@ -114,7 +114,7 @@ export default function Blog() {
           </ScrollFloat>
           <ScrollFloatText 
             containerClassName="text-muted text-lg"
-            stagger={0.015}
+            stagger={0.05}
           >
             Thoughts on software development, design, and technology
           </ScrollFloatText>
@@ -144,7 +144,7 @@ export default function Blog() {
                 </h3>
                 <ScrollFloatText 
                   containerClassName="text-muted text-sm mb-6 leading-relaxed"
-                  stagger={0.005}
+                  stagger={0.02}
                   scrollStart="top bottom-=50"
                 >
                   {post.excerpt}

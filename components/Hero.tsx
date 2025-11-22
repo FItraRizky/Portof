@@ -65,7 +65,7 @@ export default function Hero() {
           >
             <ScrollFloatText 
               containerClassName="text-lg md:text-xl text-muted mb-8 space-y-4 max-w-2xl"
-              stagger={0.01}
+              stagger={0.05}
             >
               I run a few of my own software projects while also helping companies get their own products and ideas off the ground. Read a bit more about me.
             </ScrollFloatText>

@@ -35,7 +35,7 @@ export default function Footer() {
             <ScrollFloat containerClassName="!mb-4" textClassName="text-xl font-bold">Fitra Rizky</ScrollFloat>
             <ScrollFloatText 
               containerClassName="text-muted text-sm leading-relaxed"
-              stagger={0.01}
+              stagger={0.05}
             >
               Independent software developer crafting beautiful and functional web experiences.
             </ScrollFloatText>
@@ -83,9 +83,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <ScrollFloatText containerClassName="text-sm text-muted" stagger={0.01} as="p">
-            {`© ${currentYear} Fitra Rizky. All rights reserved.`}
-          </ScrollFloatText>
+          <p className="text-sm text-muted">
+            © {currentYear} Fitra Rizky. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -92,7 +92,7 @@ export default function Contact() {
             </ScrollFloat>
             <ScrollFloatText 
               containerClassName="text-lg text-muted mb-8 leading-relaxed"
-              stagger={0.01}
+              stagger={0.05}
             >
               I&apos;m always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!
             </ScrollFloatText>
@@ -109,8 +109,8 @@ export default function Contact() {
                     <item.icon size={20} className="text-accent" />
                   </div>
                   <div>
-                    <ScrollFloatText containerClassName="text-sm text-muted" stagger={0.02} as="p">{item.label}</ScrollFloatText>
-                    <ScrollFloatText containerClassName="font-medium" stagger={0.02} as="p">{item.value}</ScrollFloatText>
+                    <ScrollFloatText containerClassName="text-sm text-muted" stagger={0.05} as="p">{item.label}</ScrollFloatText>
+                    <ScrollFloatText containerClassName="font-medium" stagger={0.05} as="p">{item.value}</ScrollFloatText>
                   </div>
                 </motion.a>
               ))}

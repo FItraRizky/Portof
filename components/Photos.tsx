@@ -38,7 +38,7 @@ export default function Photos() {
           </ScrollFloat>
           <ScrollFloatText 
             containerClassName="text-muted text-lg"
-            stagger={0.015}
+            stagger={0.05}
           >
             Moments from my journey as a developer
           </ScrollFloatText>
