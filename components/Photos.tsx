@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import ChromaGrid from "./ChromaGrid";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 interface Photo {
   id: string;
@@ -28,10 +30,18 @@ export default function Photos() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Recent Photos</h2>
-          <p className="text-muted text-lg">
+          <ScrollFloat 
+            containerClassName="!mb-4"
+            textClassName="text-3xl md:text-4xl font-bold"
+          >
+            Recent Photos
+          </ScrollFloat>
+          <ScrollFloatText 
+            containerClassName="text-muted text-lg"
+            stagger={0.015}
+          >
             Moments from my journey as a developer
-          </p>
+          </ScrollFloatText>
         </motion.div>
 
         {/* Chroma Grid */}

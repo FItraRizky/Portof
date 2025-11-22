@@ -4,6 +4,8 @@ import { motion, Variants } from "framer-motion";
 import { Code2, Palette, Rocket, Users } from "lucide-react";
 import Image from "next/image";
 import LogoLoop from "./LogoLoop";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 const skills = [
   {
@@ -81,19 +83,25 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
+          <ScrollFloat 
+            containerClassName="!mb-6"
+            textClassName="text-3xl md:text-4xl font-bold"
+          >
+            About Me
+          </ScrollFloat>
           <div className="space-y-4 text-lg text-muted leading-relaxed">
-            <p>
-              I&apos;m a passionate fullstack developer with over 5 years of
-              experience building web applications and digital products. I
-              specialize in creating scalable, performant solutions that solve
-              real-world problems.
-            </p>
-            <p>
-              When I&apos;m not coding, you&apos;ll find me exploring new
-              technologies, contributing to open-source projects, or sharing my
-              knowledge through technical writing and mentoring.
-            </p>
+            <ScrollFloatText 
+              containerClassName="text-lg text-muted leading-relaxed"
+              stagger={0.01}
+            >
+              I&apos;m a passionate fullstack developer with over 5 years of experience building web applications and digital products. I specialize in creating scalable, performant solutions that solve real-world problems.
+            </ScrollFloatText>
+            <ScrollFloatText 
+              containerClassName="text-lg text-muted leading-relaxed"
+              stagger={0.01}
+            >
+              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.
+            </ScrollFloatText>
           </div>
         </motion.div>
 
@@ -131,7 +139,12 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="w-full overflow-hidden"
         >
-          <h3 className="text-2xl font-bold mb-8 text-center md:text-left">Technologies I Work With</h3>
+          <ScrollFloat 
+            containerClassName="!mb-8"
+            textClassName="text-2xl font-bold text-center md:text-left"
+          >
+            Technologies I Work With
+          </ScrollFloat>
           <div className="w-full -mx-6 md:mx-0 px-6 md:px-0">
              <LogoLoop items={technologies} speed={40} />
           </div>

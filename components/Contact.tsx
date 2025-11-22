@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -82,14 +84,18 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <ScrollFloat 
+              containerClassName="!mb-6"
+              textClassName="text-3xl md:text-4xl font-bold"
+            >
               Get In Touch
-            </h2>
-            <p className="text-lg text-muted mb-8 leading-relaxed">
-              I&apos;m always interested in hearing about new projects and
-              opportunities. Whether you have a question or just want to say hi,
-              feel free to reach out!
-            </p>
+            </ScrollFloat>
+            <ScrollFloatText 
+              containerClassName="text-lg text-muted mb-8 leading-relaxed"
+              stagger={0.01}
+            >
+              I&apos;m always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+            </ScrollFloatText>
 
             <div className="space-y-4">
               {contactInfo.map((item) => (
@@ -103,8 +109,8 @@ export default function Contact() {
                     <item.icon size={20} className="text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted">{item.label}</p>
-                    <p className="font-medium">{item.value}</p>
+                    <ScrollFloatText containerClassName="text-sm text-muted" stagger={0.02} as="p">{item.label}</ScrollFloatText>
+                    <ScrollFloatText containerClassName="font-medium" stagger={0.02} as="p">{item.value}</ScrollFloatText>
                   </div>
                 </motion.a>
               ))}

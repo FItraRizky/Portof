@@ -3,6 +3,8 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 interface Project {
   id: string;
@@ -97,12 +99,18 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
+          <ScrollFloat 
+            containerClassName="!mb-4"
+            textClassName="text-3xl md:text-4xl font-bold font-serif"
+          >
             Featured Projects
-          </h2>
-          <p className="text-muted text-lg">
+          </ScrollFloat>
+          <ScrollFloatText 
+            containerClassName="text-muted text-lg"
+            stagger={0.015}
+          >
             A selection of projects I&apos;ve worked on recently
-          </p>
+          </ScrollFloatText>
         </motion.div>
 
         {/* Projects Grid */}
@@ -133,9 +141,13 @@ export default function Projects() {
                     className="text-muted group-hover:text-accent transition-colors flex-shrink-0 ml-2"
                   />
                 </div>
-                <p className="text-muted mb-6 text-sm leading-relaxed">
+                <ScrollFloatText 
+                  containerClassName="text-muted mb-6 text-sm leading-relaxed"
+                  stagger={0.005}
+                  scrollStart="top bottom-=50"
+                >
                   {project.description}
-                </p>
+                </ScrollFloatText>
                 {project.tags && (
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.map((tag) => (

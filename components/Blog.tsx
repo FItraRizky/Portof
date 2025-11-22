@@ -3,6 +3,8 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 interface BlogPost {
   id: string;
@@ -104,10 +106,18 @@ export default function Blog() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">Latest Posts</h2>
-          <p className="text-muted text-lg">
+          <ScrollFloat 
+            containerClassName="!mb-4"
+            textClassName="text-3xl md:text-4xl font-bold font-serif"
+          >
+            Latest Posts
+          </ScrollFloat>
+          <ScrollFloatText 
+            containerClassName="text-muted text-lg"
+            stagger={0.015}
+          >
             Thoughts on software development, design, and technology
-          </p>
+          </ScrollFloatText>
         </motion.div>
 
         {/* Blog Posts Grid */}
@@ -132,9 +142,13 @@ export default function Blog() {
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-accent transition-colors leading-tight font-serif">
                   {post.title}
                 </h3>
-                <p className="text-muted text-sm mb-6 leading-relaxed">
+                <ScrollFloatText 
+                  containerClassName="text-muted text-sm mb-6 leading-relaxed"
+                  stagger={0.005}
+                  scrollStart="top bottom-=50"
+                >
                   {post.excerpt}
-                </p>
+                </ScrollFloatText>
                 <div className="flex items-center gap-4 text-xs text-muted/80 mt-auto">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} />

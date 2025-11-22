@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import ProfileCard from "./ProfileCard";
 import GradientText from "./GradientText";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 export default function Hero() {
   const containerVariants: Variants = {
@@ -61,21 +63,12 @@ export default function Hero() {
             className="text-lg md:text-xl text-muted mb-8 space-y-4 max-w-2xl"
             variants={itemVariants}
           >
-            <p>
-              I run a few of my own{" "}
-              <Link href="#projects" className="text-accent hover:underline font-medium">
-                software projects
-              </Link>{" "}
-              while also{" "}
-              <Link href="#contact" className="text-accent hover:underline font-medium">
-                helping companies
-              </Link>{" "}
-              get their own products and ideas off the ground. Read a bit more{" "}
-              <Link href="#about" className="text-accent hover:underline font-medium">
-                about me
-              </Link>
-              .
-            </p>
+            <ScrollFloatText 
+              containerClassName="text-lg md:text-xl text-muted mb-8 space-y-4 max-w-2xl"
+              stagger={0.01}
+            >
+              I run a few of my own software projects while also helping companies get their own products and ideas off the ground. Read a bit more about me.
+            </ScrollFloatText>
             <p className="text-sm text-muted/80">
               Looking for a portfolio? The code for this website is open source.{" "}
               <a

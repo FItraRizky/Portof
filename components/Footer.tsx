@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter, Heart } from "lucide-react";
 import WorldClock from "@/components/WorldClock";
+import ScrollFloat from "./ScrollFloat";
+import ScrollFloatText from "./ScrollFloatText";
 
 import { div, text } from "framer-motion/client";
 export default function Footer() {
@@ -30,15 +32,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Fitra Rizky</h3>
-            <p className="text-muted text-sm leading-relaxed">
+            <ScrollFloat containerClassName="!mb-4" textClassName="text-xl font-bold">Fitra Rizky</ScrollFloat>
+            <ScrollFloatText 
+              containerClassName="text-muted text-sm leading-relaxed"
+              stagger={0.01}
+            >
               Independent software developer crafting beautiful and functional web experiences.
-            </p>
+            </ScrollFloatText>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="font-semibold mb-4">Navigation</h4>
+            <ScrollFloat containerClassName="!mb-4" textClassName="font-semibold">Navigation</ScrollFloat>
             <ul className="space-y-2">
               {footerLinks.navigation.map((link) => (
                 <li key={link.href}>
@@ -52,13 +57,13 @@ export default function Footer() {
 
           {/* World Clock */}
           <div>
-            <h4 className="font-semibold mb-4">World Clock</h4>
+            <ScrollFloat containerClassName="!mb-4" textClassName="font-semibold">World Clock</ScrollFloat>
             <WorldClock />
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <ScrollFloat containerClassName="!mb-4" textClassName="font-semibold">Connect</ScrollFloat>
             <div className="flex gap-3">
               {footerLinks.social.map((social) => (
                 <a
@@ -78,7 +83,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted">© {currentYear} Fitra Rizky. All rights reserved.</p>
+          <ScrollFloatText containerClassName="text-sm text-muted" stagger={0.01} as="p">
+            {`© ${currentYear} Fitra Rizky. All rights reserved.`}
+          </ScrollFloatText>
         </div>
       </div>
     </footer>
