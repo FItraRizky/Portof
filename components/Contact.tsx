@@ -54,11 +54,14 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         alert("Message sent successfully!");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        alert("Failed to send message. Please try again.");
+        console.error("Failed to send message:", data);
+        alert(`Failed to send message: ${data.error?.message || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
@@ -69,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-foreground/2">
+    <section id="contact" className="py-20 px-6 bg-foreground/2" suppressHydrationWarning>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Column - Info */}

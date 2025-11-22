@@ -1,6 +1,6 @@
-"use client";
+// "use client"
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -48,27 +48,23 @@ export default function ProfileCard({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current || !enableTilt) return;
-
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
     const mouseXFromCenter = e.clientX - rect.left - width / 2;
     const mouseYFromCenter = e.clientY - rect.top - height / 2;
-
     x.set(mouseXFromCenter / width);
     y.set(mouseYFromCenter / height);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!ref.current || (!enableTilt && !enableMobileTilt)) return;
-
     const touch = e.touches[0];
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
     const touchXFromCenter = touch.clientX - rect.left - width / 2;
     const touchYFromCenter = touch.clientY - rect.top - height / 2;
-
     x.set(touchXFromCenter / width);
     y.set(touchYFromCenter / height);
   };
@@ -92,9 +88,7 @@ export default function ProfileCard({
         "relative w-full max-w-[320px] h-[420px] mx-auto cursor-pointer",
         className
       )}
-      style={{
-        perspective: 1000,
-      }}
+      style={{ perspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onTouchMove={handleTouchMove}
@@ -102,11 +96,7 @@ export default function ProfileCard({
     >
       <motion.div
         className="relative w-full h-full rounded-[20px] overflow-hidden bg-[#0f172a] shadow-2xl border border-slate-800"
-        style={{
-          rotateX: enableTilt ? rotateX : 0,
-          rotateY: enableTilt ? rotateY : 0,
-          transformStyle: "preserve-3d",
-        }}
+        style={{ rotateX: enableTilt ? rotateX : 0, rotateY: enableTilt ? rotateY : 0 }}
       >
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -114,6 +104,7 @@ export default function ProfileCard({
             src={avatarUrl}
             alt={name}
             fill
+            sizes="100vw"
             className="object-cover opacity-90 transition-transform duration-700 hover:scale-105"
             priority
           />
@@ -125,31 +116,33 @@ export default function ProfileCard({
         <motion.div
           className="absolute inset-0 pointer-events-none z-10 mix-blend-overlay"
           style={{
-            background: useTransform(
-              () => {
-                const xVal = mouseX.get();
-                const yVal = mouseY.get();
-                return `radial-gradient(circle at ${50 + xVal * 100}% ${
-                  50 + yVal * 100
-                }%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%)`;
-              }
-            ),
+            background: useTransform(() => {
+              const xVal = mouseX.get();
+              const yVal = mouseY.get();
+              return `radial-gradient(circle at ${50 + xVal * 100}% ${
+                50 + yVal * 100
+              }%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%)`;
+            }),
             opacity: useTransform(mouseX, [-0.5, 0.5], [0, 0.6]),
           }}
         />
 
         {/* Top Content */}
-        <div 
+        <div
           className="absolute top-6 left-0 right-0 text-center z-10"
           style={{ transform: "translateZ(30px)" }}
         >
-          <h2 className="text-2xl font-bold text-white tracking-tight drop-shadow-md">{name}</h2>
-          <p className="text-blue-200 text-sm font-medium drop-shadow-sm">{title}</p>
+          <h2 className="text-2xl font-bold text-white tracking-tight drop-shadow-md">
+            {name}
+          </h2>
+          <p className="text-blue-200 text-sm font-medium drop-shadow-sm">
+            {title}
+          </p>
         </div>
 
         {/* Bottom Glass Bar */}
         {showUserInfo && (
-          <div 
+          <div
             className="absolute bottom-4 left-4 right-4 z-20"
             style={{ transform: "translateZ(50px)" }}
           >
@@ -157,14 +150,14 @@ export default function ProfileCard({
               {/* Mini Profile */}
               <div className="flex items-center gap-3">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/20">
-                  <Image src={avatarUrl} alt="Avatar" fill className="object-cover" />
+                  <Image src={avatarUrl} alt="Avatar" fill sizes="100vw" className="object-cover" />
                 </div>
                 <div className="flex flex-col text-left">
                   <span className="text-white text-xs font-bold tracking-wide">{handle}</span>
                   <div className="flex items-center gap-1.5">
                     <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                     </span>
                     <span className="text-green-400 text-[10px] font-bold uppercase tracking-wider">{status}</span>
                   </div>
